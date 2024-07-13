@@ -5,16 +5,11 @@ import 'package:flutter_l_store/features/authentication/screens/onboarding/widge
 import 'package:flutter_l_store/features/authentication/screens/onboarding/widgets/onboarding_page.dart';
 import 'package:flutter_l_store/features/authentication/screens/onboarding/widgets/onboarding_skip.dart';
 import 'package:flutter_l_store/utils/constants/image_strings.dart';
-import 'package:flutter_l_store/utils/helpers/helper_functions.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/sizes.dart';
+
 import '../../../../utils/constants/text_strings.dart';
-import '../../../../utils/device/device_utility.dart';
+
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
