@@ -1,21 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
+
+import 'package:flutter_l_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:flutter_l_store/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:flutter_l_store/features/shop/screens/home/widgets/home_categories.dart';
+import 'package:flutter_l_store/features/shop/screens/home/widgets/promo_slider.dart';
 import 'package:flutter_l_store/utils/constants/colors.dart';
 import 'package:flutter_l_store/utils/constants/sizes.dart';
-import 'package:flutter_l_store/utils/constants/text_strings.dart';
-import 'package:flutter_l_store/utils/device/device_utility.dart';
-import 'package:flutter_l_store/utils/helpers/helper_functions.dart';
-import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 
-import '../../../../common/widgets/appbar/appbar.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
-import '../../../../common/widgets/image_text_widgets/vertical_image_text.dart';
-import '../../../../common/widgets/products/cart/cart_menu_icon.dart';
+import '../../../../common/widgets/layouts/grid_layout.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/image_strings.dart';
 
@@ -24,11 +21,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            LPrimaryHeaderContainer(
+            /// Header
+            const LPrimaryHeaderContainer(
               child: Column(
                 children: [
                   /// -- Appbar
@@ -68,11 +66,35 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+
+            /// Body
+            Padding(
+              padding: const EdgeInsets.all(LSizes.defaultSpace),
+              child: Column(
+                children: [
+                  /// -- Promo Slider
+                  const LPromoSlider(
+                    banners: [
+                      LImages.promoBanner1,
+                      LImages.promoBanner2,
+                      LImages.promoBanner3,
+                    ],
+                  ),
+                  const SizedBox(
+                    height: LSizes.spaceBtwSections,
+                  ),
+
+                  /// -- Popular Products
+                  LGridLayout(
+                    itemCount: 4,
+                    itemBuilder: (_, index) => const LProductCardVertical(),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-
