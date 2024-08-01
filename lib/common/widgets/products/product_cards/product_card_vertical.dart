@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_l_store/common/styles/shadows.dart';
 import 'package:flutter_l_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:flutter_l_store/common/widgets/images/l_rounded_image.dart';
+import 'package:flutter_l_store/common/widgets/texts/l_brand_title_text_with_verified_icon.dart';
+import 'package:flutter_l_store/features/shop/screens/product_details/product_detail.dart';
 import 'package:flutter_l_store/utils/constants/colors.dart';
 import 'package:flutter_l_store/utils/constants/image_strings.dart';
 import 'package:flutter_l_store/utils/constants/sizes.dart';
 import 'package:flutter_l_store/utils/helpers/helper_functions.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../icons/l_circular_icon.dart';
@@ -20,7 +23,7 @@ class LProductCardVertical extends StatelessWidget {
     final dark = LHelperFunctions.isDarkMode(context);
 
     return GestureDetector(
-      onTap: (){},
+      onTap: () => Get.to(() => const ProductDetailScreen()),
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),
@@ -79,63 +82,51 @@ class LProductCardVertical extends StatelessWidget {
             ),
 
             /// -- Details
-            Padding(
-              padding: const EdgeInsets.only(left: LSizes.sm),
+            const Padding(
+              padding: EdgeInsets.only(left: LSizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const LProductTitleText(
+                  LProductTitleText(
                     title: 'Green Nike Air Shoes',
                     smallSize: true,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: LSizes.spaceBtwItems / 2,
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        'Nike',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                      const SizedBox(
-                        width: LSizes.xs,
-                      ),
-                      const Icon(
-                        Iconsax.verify5,
-                        color: LColors.primary,
-                        size: LSizes.iconXs,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      /// -- Price
-                      const LProductPriceText(price: '35.0',),
-                      Container(
-                        decoration: const BoxDecoration(
-                            color: LColors.dark,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(LSizes.cardRadiusMd),
-                              bottomRight:
-                                  Radius.circular(LSizes.productImageRadius),
-                            )),
-                        child: const SizedBox(
-                            width: LSizes.iconLg * 1.2,
-                            height: LSizes.iconLg * 1.2,
-                            child: Center(
-                              child: Icon(
-                                Iconsax.add,
-                                color: LColors.white,
-                              ),
-                            )),
-                      )
-                    ],
-                  )
+                  LBrandTitleTextWithVerifiedIcon(title: 'Nike')
+
                 ],
               ),
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                /// -- Price
+                const Padding(
+                  padding: EdgeInsets.only(left: LSizes.sm),
+                  child: LProductPriceText(price: '35.0',),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      color: LColors.dark,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(LSizes.cardRadiusMd),
+                        bottomRight:
+                        Radius.circular(LSizes.productImageRadius),
+                      )),
+                  child: const SizedBox(
+                      width: LSizes.iconLg * 1.2,
+                      height: LSizes.iconLg * 1.2,
+                      child: Center(
+                        child: Icon(
+                          Iconsax.add,
+                          color: LColors.white,
+                        ),
+                      )),
+                )
+              ],
             )
           ],
         ),
@@ -143,4 +134,32 @@ class LProductCardVertical extends StatelessWidget {
     );
   }
 }
+
+// class LBrandTitleText extends StatelessWidget {
+//   const LBrandTitleText({
+//     super.key,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       children: [
+//         Text(
+//           'Nike',
+//           overflow: TextOverflow.ellipsis,
+//           maxLines: 1,
+//           style: Theme.of(context).textTheme.labelMedium,
+//         ),
+//         const SizedBox(
+//           width: LSizes.xs,
+//         ),
+//         const Icon(
+//           Iconsax.verify5,
+//           color: LColors.primary,
+//           size: LSizes.iconXs,
+//         ),
+//       ],
+//     );
+//   }
+// }
 

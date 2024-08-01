@@ -23,9 +23,9 @@ class LGridLayout extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
+        mainAxisExtent: mainAxisExtend,
         mainAxisSpacing: LSizes.gridViewSpacing,
         crossAxisSpacing: LSizes.gridViewSpacing,
-        mainAxisExtent: mainAxisExtend,
       ),
       itemBuilder: itemBuilder,
     );

@@ -8,6 +8,8 @@ import 'package:flutter_l_store/utils/theme/custom_themes/outlined_button_theme.
 import 'package:flutter_l_store/utils/theme/custom_themes/text_field_theme.dart';
 import 'package:flutter_l_store/utils/theme/custom_themes/text_theme.dart';
 
+import '../constants/colors.dart';
+
 class LAppTheme {
   LAppTheme._();
 
@@ -36,7 +38,7 @@ class LAppTheme {
       primaryColor: Colors.blue,
       textTheme: LTextTheme.darkTextTheme,
       chipTheme: LChipTheme.darkChipTheme,
-      scaffoldBackgroundColor: Colors.black,
+      scaffoldBackgroundColor: LColors.black,
       appBarTheme: LAppBarTheme.darkAppBarTheme,
       checkboxTheme: LCheckboxTheme.darkCheckboxTheme,
       bottomSheetTheme: LBottomSheetTheme.darkBottomSheetTheme,

@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:flutter_l_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:flutter_l_store/features/shop/screens/home/widgets/home_appbar.dart';
@@ -62,7 +59,8 @@ class HomeScreen extends StatelessWidget {
                         LHomeCategories()
                       ],
                     ),
-                  )
+                  ),
+                  SizedBox(height: LSizes.spaceBtwSections,)
                 ],
               ),
             ),
@@ -82,6 +80,12 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(
                     height: LSizes.spaceBtwSections,
+                  ),
+
+                  /// -- Heading
+                  const LSectionHeading(title: 'Popular Products'),
+                  const SizedBox(
+                    height: LSizes.spaceBtwItems,
                   ),
 
                   /// -- Popular Products

@@ -21,7 +21,7 @@ dependencies:
   url_launcher: ^6.1.12
   flutter_native_splash: ^2.4.1
   smooth_page_indicator: ^1.2.0
-  carousel_slider: ^4.2.1
+
 
   # Icons
   iconsax: ^0.0.8
@@ -32,6 +32,10 @@ dependencies:
   get_storage: ^2.1.1
 
   # Product Specific
+  readmore: ^3.0.0
+  carousel_slider: ^4.2.1
+  flutter_rating_bar: ^4.0.1
+
 
 #-------------- ./ PACKAGES END --------------#
 
@@ -53,7 +57,10 @@ flutter:
     - assets/images/animations/
     - assets/images/banners/
     - assets/images/products/
+    - assets/images/content/
+    - assets/images/reviews/
     - assets/icons/categories/
+    - assets/icons/brands/
 
 
   #-------------- LOCAL FONTS --------------#

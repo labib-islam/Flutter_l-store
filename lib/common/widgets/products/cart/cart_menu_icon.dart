@@ -5,11 +5,11 @@ import '../../../../utils/constants/colors.dart';
 
 class LCartCounterIcon extends StatelessWidget {
   const LCartCounterIcon({
-    super.key, required this.onPressed, required this.iconColor,
+    super.key, required this.onPressed, this.iconColor = LColors.white,
   });
 
   final VoidCallback onPressed;
-  final Color iconColor;
+  final Color iconColor ;
 
   @override
   Widget build(BuildContext context) {

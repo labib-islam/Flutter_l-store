@@ -14,12 +14,14 @@ class LSearchContainer extends StatelessWidget {
     this.showBackground = true,
     this.showBorder = true,
     this.onTap,
+    this.padding = const EdgeInsets.symmetric(horizontal: LSizes.defaultSpace),
   });
 
   final String text;
   final IconData? icon;
   final bool showBackground, showBorder;
   final VoidCallback? onTap;
+  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
@@ -28,36 +30,39 @@ class LSearchContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: LSizes.defaultSpace),
-        child: Container(
+          padding: padding,
+          child: Container(
           width: LDeviceUtils.getScreenWidth(context),
-          padding: const EdgeInsets.all(LSizes.md),
-          decoration: BoxDecoration(
-            color: showBackground
-                ? dark
-                    ? LColors.dark
-                    : LColors.light
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(LSizes.cardRadiusLg),
-            border: showBorder ? Border.all(color: LColors.grey) : null,
-          ),
-          child: Row(
-            children: [
-              Icon(
-                icon,
-                color: LColors.darkerGrey,
-              ),
-              const SizedBox(
-                width: LSizes.spaceBtwItems,
-              ),
-              Text(
-                text,
-                style: Theme.of(context).textTheme.bodySmall,
-              )
-            ],
-          ),
-        ),
+      padding: const EdgeInsets.all(LSizes.md),
+      decoration: BoxDecoration(
+        color: showBackground
+            ? dark
+            ? LColors.dark
+            : LColors.light
+            : Colors.transparent,
+        borderRadius: BorderRadius.circular(LSizes.cardRadiusLg),
+        border: showBorder ? Border.all(color: LColors.grey) : null,
       ),
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            color: LColors.darkerGrey,
+          ),
+          const SizedBox(
+            width: LSizes.spaceBtwItems,
+          ),
+          Text(
+            text,
+            style: Theme
+                .of(context)
+                .textTheme
+                .bodySmall,
+          )
+        ],
+      ),
+    ),)
+    ,
     );
   }
 }

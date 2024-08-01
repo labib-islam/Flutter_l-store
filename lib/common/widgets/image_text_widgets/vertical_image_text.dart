@@ -10,7 +10,7 @@ class LVerticalImageText extends StatelessWidget {
     required this.title,
     required this.image,
     this.textColor = LColors.white,
-    this.backgroundColor = LColors.white,
+    this.backgroundColor,
     this.onTap,
   });
 
