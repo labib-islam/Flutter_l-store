@@ -61,6 +61,7 @@ flutter:
     - assets/images/reviews/
     - assets/icons/categories/
     - assets/icons/brands/
+    - assets/icons/payment_methods/
 
 
   #-------------- LOCAL FONTS --------------#
