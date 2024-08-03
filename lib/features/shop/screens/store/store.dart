@@ -5,10 +5,12 @@ import 'package:flutter_l_store/common/widgets/custom_shapes/containers/search_c
 import 'package:flutter_l_store/common/widgets/layouts/grid_layout.dart';
 import 'package:flutter_l_store/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:flutter_l_store/common/widgets/texts/section_heading.dart';
+import 'package:flutter_l_store/features/shop/screens/brand/all_brands.dart';
 import 'package:flutter_l_store/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:flutter_l_store/utils/constants/colors.dart';
 import 'package:flutter_l_store/utils/constants/sizes.dart';
 import 'package:flutter_l_store/utils/helpers/helper_functions.dart';
+import 'package:get/get.dart';
 
 import '../../../../common/widgets/brands/brand_card.dart';
 
@@ -65,7 +67,7 @@ class StoreScreen extends StatelessWidget {
                         /// -- Featured Brands
                         LSectionHeading(
                           title: 'Featured Brands',
-                          onPressed: () {},
+                          onPressed: () => Get.to(() => const AllBrandsScreen()),
                         ),
                         const SizedBox(
                           height: LSizes.spaceBtwItems / 1.5,

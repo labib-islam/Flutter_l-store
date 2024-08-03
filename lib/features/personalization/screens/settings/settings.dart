@@ -5,6 +5,7 @@ import 'package:flutter_l_store/common/widgets/list_tiles/settings_menu_tile.dar
 import 'package:flutter_l_store/common/widgets/texts/section_heading.dart';
 import 'package:flutter_l_store/features/personalization/screens/address/address.dart';
 import 'package:flutter_l_store/features/personalization/screens/profile/profile.dart';
+import 'package:flutter_l_store/features/shop/screens/order/order.dart';
 import 'package:flutter_l_store/utils/constants/sizes.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -75,7 +76,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.bag_tick,
                     title: 'My Orders',
                     subTitle: 'In-progress and Completed Orders',
-                    onTap: () {},
+                    onTap: () => Get.to(() => const OrderScreen()),
                   ),
                   LSettingsMenuTile(
                     icon: Iconsax.bank,

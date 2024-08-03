@@ -95,37 +95,42 @@ class LProductCardVertical extends StatelessWidget {
                     height: LSizes.spaceBtwItems / 2,
                   ),
                   LBrandTitleTextWithVerifiedIcon(title: 'Nike')
-
                 ],
               ),
             ),
             const Spacer(),
+
+            /// Price Row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 /// -- Price
                 const Padding(
                   padding: EdgeInsets.only(left: LSizes.sm),
-                  child: LProductPriceText(price: '35.0',),
+                  child: LProductPriceText(
+                    price: '35.0',
+                  ),
                 ),
+
+                /// Add to Cart Button
                 Container(
                   decoration: const BoxDecoration(
                       color: LColors.dark,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(LSizes.cardRadiusMd),
-                        bottomRight:
-                        Radius.circular(LSizes.productImageRadius),
+                        bottomRight: Radius.circular(LSizes.productImageRadius),
                       )),
                   child: const SizedBox(
-                      width: LSizes.iconLg * 1.2,
-                      height: LSizes.iconLg * 1.2,
-                      child: Center(
-                        child: Icon(
-                          Iconsax.add,
-                          color: LColors.white,
-                        ),
-                      )),
-                )
+                    width: LSizes.iconLg * 1.2,
+                    height: LSizes.iconLg * 1.2,
+                    child: Center(
+                      child: Icon(
+                        Iconsax.add,
+                        color: LColors.white,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             )
           ],
@@ -162,4 +167,3 @@ class LProductCardVertical extends StatelessWidget {
 //     );
 //   }
 // }
-
