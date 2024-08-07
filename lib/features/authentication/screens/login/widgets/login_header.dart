@@ -20,10 +20,13 @@ class LLoginHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image(
-          image: AssetImage(
-              dark ? LImages.lightAppLogo : LImages.darkAppLogo),
-          height: 150,
+        Padding(
+          padding: const EdgeInsets.only(bottom: LSizes.spaceBtwSections),
+          child: Image(
+            image: AssetImage(
+                dark ? LImages.lightAppLogo : LImages.darkAppLogoL),
+            height: 100,
+          ),
         ),
         Text(LTexts.loginTitle,
             style: Theme.of(context).textTheme.headlineMedium),
