@@ -3,6 +3,7 @@ import 'package:flutter_l_store/common/widgets/appbar/appbar.dart';
 import 'package:flutter_l_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:flutter_l_store/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:flutter_l_store/common/widgets/texts/section_heading.dart';
+import 'package:flutter_l_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:flutter_l_store/features/personalization/screens/address/address.dart';
 import 'package:flutter_l_store/features/personalization/screens/profile/profile.dart';
 import 'package:flutter_l_store/features/shop/screens/order/order.dart';
@@ -140,7 +141,7 @@ class SettingsScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () => AuthenticationRepository.instance.logout(),
                       child: const Text('Logout'),
 
                     ),

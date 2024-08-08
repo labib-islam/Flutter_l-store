@@ -15,6 +15,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../features/shop/screens/store/store.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 
 class AuthenticationRepository extends GetxController {
@@ -39,6 +40,7 @@ class AuthenticationRepository extends GetxController {
     if (kDebugMode) {
       print('================= GET STORAGE AUTH REPO =================');
       print(deviceStorage.read('IsFirstTime'));
+      print(user);
     }
 
     if(user != null) {
@@ -61,6 +63,21 @@ class AuthenticationRepository extends GetxController {
 /* -------------------- Email & Password sign-in -------------------- */
 
   /// [EmailAuthentication] - SignIn
+  Future<UserCredential> loginWithEmailAndPassword(String email, String password) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      throw LFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw LFirebaseException(e.code).message;
+    } on FormatException catch (e) {
+      throw const LFormatException();
+    } on PlatformException catch (e) {
+      throw LPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again.';
+    }
+  }
 
   /// [EmailAuthentication] - REGISTER
   Future<UserCredential> registerWithEmailAndPassword(String email, String password) async {
