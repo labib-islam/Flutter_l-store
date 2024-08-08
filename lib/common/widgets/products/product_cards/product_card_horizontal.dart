@@ -10,7 +10,6 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
-import '../../../styles/shadows.dart';
 import '../../icons/l_circular_icon.dart';
 
 class LProductCardHorizontal extends StatelessWidget {

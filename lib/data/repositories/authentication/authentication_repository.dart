@@ -1,9 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_l_store/features/authentication/controllers/onboarding/onboarding_controller.dart';
-import 'package:flutter_l_store/features/authentication/controllers/signup/verify_email_controller.dart';
 import 'package:flutter_l_store/features/authentication/screens/login/login.dart';
 import 'package:flutter_l_store/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:flutter_l_store/features/authentication/screens/signup/verify_email.dart';
@@ -14,8 +11,8 @@ import 'package:flutter_l_store/utils/exceptions/platform_exceptions.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../../features/shop/screens/store/store.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 
 class AuthenticationRepository extends GetxController {
@@ -70,7 +67,7 @@ class AuthenticationRepository extends GetxController {
       throw LFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
       throw LFirebaseException(e.code).message;
-    } on FormatException catch (e) {
+    } on FormatException {
       throw const LFormatException();
     } on PlatformException catch (e) {
       throw LPlatformException(e.code).message;
@@ -87,7 +84,7 @@ class AuthenticationRepository extends GetxController {
       throw LFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
       throw LFirebaseException(e.code).message;
-    } on FormatException catch (e) {
+    } on FormatException {
       throw const LFormatException();
     } on PlatformException catch (e) {
       throw LPlatformException(e.code).message;
@@ -95,8 +92,6 @@ class AuthenticationRepository extends GetxController {
       throw 'Something went wrong. Please try again.';
     }
   }
-
-  /// [ReAuthenticate] - ReAuthenticate User
 
   /// [EmailVerification] - MAIL VERIFICATION
   Future<void> sendEmailVerification() async {
@@ -116,10 +111,58 @@ class AuthenticationRepository extends GetxController {
   }
 
   /// [EmailAuthentication] - FORGET PASSWORD
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw LFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw LFirebaseException(e.code).message;
+    } on FormatException catch(_) {
+      throw const LFormatException();
+    } on PlatformException catch (e) {
+      throw LPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  /// [ReAuthenticate] - ReAuthenticate User
+
 
 /* -------------------- Federated identity & social sign-in -------------------- */
 
   /// [GoogleAuthentication] - GOOGLE
+  Future<UserCredential?> signInWithGoogle() async {
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth = await userAccount?.authentication;
+
+      // Create a new credential
+      final credentials = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken
+      );
+
+      // Once signed in, return the UserCredential
+      return await _auth.signInWithCredential(credentials);
+
+    } on FirebaseAuthException catch (e) {
+      throw LFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw LFirebaseException(e.code).message;
+    } on FormatException catch(_) {
+      throw const LFormatException();
+    } on PlatformException catch (e) {
+      throw LPlatformException(e.code).message;
+    } catch (e) {
+      if (kDebugMode) print('Something went wrong: $e');
+      return null;
+    }
+  }
 
   /// [FacebookAuthentication] - FACEBOOK
 

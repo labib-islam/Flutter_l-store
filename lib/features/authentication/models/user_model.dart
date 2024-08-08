@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_l_store/utils/formatters/formatter.dart';
 
 /// Model class representing user data.

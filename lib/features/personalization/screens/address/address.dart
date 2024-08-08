@@ -14,8 +14,8 @@ class UserAddressScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.to(() => const AddNewAddressScreen()),
-        child: const Icon(Icons.add, color: LColors.white),
         backgroundColor: LColors.primary,
+        child: const Icon(Icons.add, color: LColors.white),
       ),
       appBar: LAppBar(
         showBackArrow: true,

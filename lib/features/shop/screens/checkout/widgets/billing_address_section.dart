@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_l_store/utils/constants/sizes.dart';
 
 import '../../../../../common/widgets/texts/section_heading.dart';
-import '../../../../../utils/constants/colors.dart';
 
 class LBillingAddressSection extends StatelessWidget {
   const LBillingAddressSection({super.key});
