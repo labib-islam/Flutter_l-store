@@ -81,7 +81,7 @@ class LoginController extends GetxController {
     try {
       // Start Loading
       LFullScreenLoader.openLoadingDialog(
-          'Logging you in...', LImages.docerAnimation);
+          'Processing your request...', LImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
