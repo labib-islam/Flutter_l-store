@@ -4,7 +4,6 @@ import 'package:flutter_l_store/features/personalization/controllers/user_contro
 import 'package:flutter_l_store/features/personalization/screens/profile/profile.dart';
 import 'package:flutter_l_store/utils/popups/loaders.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 import '../../../utils/constants/image_strings.dart';
 import '../../../utils/helpers/network_manager.dart';

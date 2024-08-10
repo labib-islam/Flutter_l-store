@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_l_store/common/widgets/appbar/appbar.dart';
 import 'package:flutter_l_store/features/authentication/controllers/forget_password/forget_password_controller.dart';
-import 'package:flutter_l_store/features/authentication/screens/password_configuration/reset_password.dart';
 import 'package:flutter_l_store/utils/validators/validation.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';

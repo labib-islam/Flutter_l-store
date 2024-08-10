@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_l_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:flutter_l_store/data/repositories/user/user_repository.dart';
@@ -10,6 +9,7 @@ import 'package:flutter_l_store/utils/constants/sizes.dart';
 import 'package:flutter_l_store/utils/popups/full_screen_loader.dart';
 import 'package:flutter_l_store/utils/popups/loaders.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../utils/helpers/network_manager.dart';
 import '../../authentication/models/user_model.dart';
@@ -21,6 +21,7 @@ class UserController extends GetxController {
   Rx<UserModel> user = UserModel.empty().obs;
 
   final hidePassword = false.obs;
+  final imageUploading = false.obs;
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   final userRepository = Get.put(UserRepository());
@@ -48,27 +49,34 @@ class UserController extends GetxController {
   /// Save user Record from any Registration provider
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
-      if (userCredentials != null) {
-        // Convert Name to First and Last Name
-        final nameParts =
-            UserModel.nameParts(userCredentials.user!.displayName ?? '');
-        final username =
-            UserModel.generateUsername(userCredentials.user!.displayName ?? '');
+      // First Update Rx User and then check if user data is already stored. If not store new data
+      await fetchUserRecord();
 
-        // Map Data
-        final user = UserModel(
-          id: userCredentials.user!.uid,
-          firstName: nameParts[0],
-          lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
-          username: username,
-          email: userCredentials.user!.email ?? '',
-          phoneNumber: userCredentials.user!.phoneNumber ?? '',
-          profilePicture: userCredentials.user!.photoURL ?? '',
-        );
+      // if no record already stored
+      if(user.value.id.isEmpty) {
+        if (userCredentials != null) {
+          // Convert Name to First and Last Name
+          final nameParts =
+          UserModel.nameParts(userCredentials.user!.displayName ?? '');
+          final username =
+          UserModel.generateUsername(userCredentials.user!.displayName ?? '');
 
-        // Save user data
-        await userRepository.saveUserRecord(user);
+          // Map Data
+          final user = UserModel(
+            id: userCredentials.user!.uid,
+            firstName: nameParts[0],
+            lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
+            username: username,
+            email: userCredentials.user!.email ?? '',
+            phoneNumber: userCredentials.user!.phoneNumber ?? '',
+            profilePicture: userCredentials.user!.photoURL ?? '',
+          );
+
+          // Save user data
+          await userRepository.saveUserRecord(user);
+        }
       }
+
     } catch (e) {
       LLoaders.warningSnackBar(
         title: 'Data not saved',
@@ -127,7 +135,7 @@ class UserController extends GetxController {
     }
   }
 
-  /// -- RE-AUTHENTICATE before deleting
+  /// RE-AUTHENTICATE before deleting
   Future<void> reAuthenticateEmailAndPasswordUser() async {
     try {
       // Start Loading
@@ -166,4 +174,29 @@ class UserController extends GetxController {
     }
   }
 
+  /// Upload Profile Image
+  uploadUserProfilePicture() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70, maxHeight: 512, maxWidth: 512);
+      if (image != null) {
+        imageUploading.value = true;
+        // Upload Image
+        final imageUrl = await userRepository.uploadImage('Users/Images/Profile/', image);
+
+        // Update User Image Record
+        Map<String, dynamic> json = {'ProfilePicture': imageUrl};
+        await userRepository.updateSingleField(json);
+
+        user.value.profilePicture = imageUrl;
+        user.refresh();
+
+        LLoaders.successSnackBar(title: 'Congratulations', message: 'Your Profile Image has been updated');
+      }
+    } catch (e) {
+      LLoaders.errorSnackBar(title: 'Oh Snap!', message: 'Something went wrong: $e');
+    } finally {
+      imageUploading.value = false;
+    }
+
+  }
 }

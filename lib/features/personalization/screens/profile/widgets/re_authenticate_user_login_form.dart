@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_l_store/app.dart';
 import 'package:flutter_l_store/features/personalization/controllers/user_controller.dart';
 import 'package:flutter_l_store/utils/constants/sizes.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
