@@ -6,9 +6,12 @@ import 'package:flutter_l_store/common/widgets/texts/section_heading.dart';
 import '../../../../../common/widgets/brands/brand_show_case.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
+import '../../../models/category_model.dart';
 
 class LCategoryTab extends StatelessWidget {
-  const LCategoryTab({super.key});
+  const LCategoryTab({super.key, required this.category});
+
+  final CategoryModel category;
 
   @override
   Widget build(BuildContext context) {
