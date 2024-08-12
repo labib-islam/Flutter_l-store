@@ -5,7 +5,6 @@ import 'package:flutter_l_store/features/shop/screens/sub_category/sub_categorie
 import 'package:get/get.dart';
 
 import '../../../../../common/widgets/image_text_widgets/vertical_image_text.dart';
-import '../../../../../utils/constants/image_strings.dart';
 
 class LHomeCategories extends StatelessWidget {
   const LHomeCategories({

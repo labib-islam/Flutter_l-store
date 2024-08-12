@@ -13,7 +13,6 @@ import '../../../../common/widgets/custom_shapes/containers/primary_header_conta
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
 import '../../../../common/widgets/layouts/grid_layout.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
-import '../../../../utils/constants/image_strings.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -73,13 +72,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   /// -- Promo Slider
-                  const LPromoSlider(
-                    banners: [
-                      LImages.promoBanner1,
-                      LImages.promoBanner2,
-                      LImages.promoBanner3,
-                    ],
-                  ),
+                  const LPromoSlider(),
                   const SizedBox(
                     height: LSizes.spaceBtwSections,
                   ),
