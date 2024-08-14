@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_l_store/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:flutter_l_store/common/widgets/shimmers/vertical_product_shimmer.dart';
+import 'package:flutter_l_store/features/shop/controllers/product_controller.dart';
 import 'package:flutter_l_store/features/shop/screens/all_products/all_products.dart';
 import 'package:flutter_l_store/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:flutter_l_store/features/shop/screens/home/widgets/home_categories.dart';
@@ -19,6 +21,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProductController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -61,7 +64,9 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: LSizes.spaceBtwSections,)
+                  SizedBox(
+                    height: LSizes.spaceBtwSections,
+                  )
                 ],
               ),
             ),
@@ -78,16 +83,29 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   /// -- Heading
-                  LSectionHeading(title: 'Popular Products', onPressed: () => Get.to(() => const AllProducts()),),
+                  LSectionHeading(
+                    title: 'Popular Products',
+                    onPressed: () => Get.to(() => const AllProducts()),
+                  ),
                   const SizedBox(
                     height: LSizes.spaceBtwItems,
                   ),
 
                   /// -- Popular Products
-                  LGridLayout(
-                    itemCount: 4,
-                    itemBuilder: (_, index) => const LProductCardVertical(),
-                  ),
+                  Obx(() {
+                    if (controller.isLoading.value)
+                      return const LVerticalProductShimmer();
+                    if (controller.featuredProducts.isEmpty) {
+                      return Center(
+                          child: Text('No Data Found!',
+                              style: Theme.of(context).textTheme.bodyMedium));
+                    }
+                    return LGridLayout(
+                      itemCount: controller.featuredProducts.length,
+                      itemBuilder: (_, index) => LProductCardVertical(
+                          product: controller.featuredProducts[index]),
+                    );
+                  }),
                 ],
               ),
             ),
